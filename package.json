@@ -1,0 +1,26 @@
+{
+  "name": "slack-lunch-bot",
+  "version": "1.0.0",
+  "description": "Slack Bot for asking people who's going for lunch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run clean && npm run build && aws lambda update-function-code --function-name lunch-bot-lambda --zip-file fileb://build.zip --publish",
+    "clean": "rm build.zip",
+    "build": "zip -r build.zip node_modules index.js app.js routes.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BartekKloza/slack-lunch-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BartekKloza/slack-lunch-bot/issues"
+  },
+  "homepage": "https://github.com/BartekKloza/slack-lunch-bot#readme",
+  "dependencies": {
+    "@slack/web-api": "^5.4.0",
+    "aws-sdk": "^2.561.0"
+  }
+}
