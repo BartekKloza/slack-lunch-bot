@@ -2,7 +2,7 @@
 
 const { WebClient } = require('@slack/web-api');
 const AWS = require('aws-sdk');
-const SLACK_OAUTH_KEY = 'xoxp-817907755365-805114853026-817952514160-87001c057f11332e79facd6196d12cd8';
+const SLACK_OAUTH_KEY = 'xoxp-817907755365-805114853026-821955892133-6e2790f8e1932cee7d39c20790c9472d';
 const DYNAMO_DB_TABLE = 'lunch-bot-timestamps';
 const slackWebClient = new WebClient(SLACK_OAUTH_KEY);
 const dynamodb = new AWS.DynamoDB.DocumentClient({region: 'eu-west-2'});
@@ -37,7 +37,7 @@ let asd = async function (event, context) {
         }
     };
     console.log('saving timestamp to the DB');
-    await dynamodb.put(timestampObj, (error) => {
+    dynamodb.put(timestampObj, (error) => {
         if(error) {
             console.log('DynamoDB error! Unable to save timestamp to the DB');
         }
