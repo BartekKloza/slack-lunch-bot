@@ -10,19 +10,20 @@ const slackWebClient = new WebClient(SLACK_OAUTH_KEY);
 // nineteen-london channel id = GNART2BFE
 
 exports.handler = async (event, context) => {
-  // Test Slack OAuth
-  const res = await slackWebClient.auth.test();
-  if (!res.ok) {
-    console.log('Slack auth error! Terminating lambda.');
-    return;
-  }
-  await firstPart.run();
-  // await secondPart.run();
+    // Test Slack OAuth
+    const res = await slackWebClient.auth.test();
+    if (!res.ok) {
+        console.log('Slack auth error! Terminating lambda.');
+        return;
+    }
+    await firstPart.run();
+    //await secondPart.run();
 
-
-  if (new Date().getMinutes() < 15) {
-    // It's 12:05, execute firstPart.js
-  } else {
-    // It's 12:30, execute secondPart.js
-  }
+    if (new Date().getMinutes() < 15) {
+        // It's 12:05, execute firstPart.js
+        // await firstPart.run();
+    } else {
+        // It's 12:30, execute secondPart.js
+        // await secondPart.run();
+    }
 };
