@@ -1,5 +1,6 @@
 const { WebClient } = require('@slack/web-api');
 const firstPart = require('./firstPart');
+const secondPart = require('./secondPart');
 
 const SLACK_OAUTH_KEY = process.env.SLACK_OAUTH_KEY;
 const slackWebClient = new WebClient(SLACK_OAUTH_KEY);
@@ -16,11 +17,12 @@ exports.handler = async (event, context) => {
     return;
   }
   await firstPart.run();
+  // await secondPart.run();
+
 
   if (new Date().getMinutes() < 15) {
-    // It's 12:00, execute first part of the script
+    // It's 12:05, execute firstPart.js
   } else {
-    // It's 12:30, execute second part of the script
+    // It's 12:30, execute secondPart.js
   }
-  // START OF PART 2
 };
