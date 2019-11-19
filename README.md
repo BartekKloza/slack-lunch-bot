@@ -3,7 +3,7 @@ Slack Bot for asking people who's going for lunch.
 ## Setup
 In order to run the bot you need to set up:
 
-1. AWS Lambda function
+1. AWS Lambda function (with AmazonDynamoDBFullAccess permission)
 2. DynamoDB table
 
 Requires following Lambda env variables:
