@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "npm run clean && npm run build && aws lambda update-function-code --function-name lunch-bot-lambda --zip-file fileb://build.zip --publish",
     "clean": "rm build.zip",
-    "build": "zip -r build.zip node_modules index.js firstPart.js secondPart.js"
+    "build": "zip -r build.zip node_modules index.js ./src/firstPart.js ./src/secondPart.js"
   },
   "repository": {
     "type": "git",

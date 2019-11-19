@@ -1,6 +1,6 @@
 const { WebClient } = require('@slack/web-api');
-const firstPart = require('./firstPart');
-const secondPart = require('./secondPart');
+const firstPart = require('./src/firstPart');
+const secondPart = require('./src/secondPart');
 
 const SLACK_OAUTH_KEY = process.env.SLACK_OAUTH_KEY;
 const slackWebClient = new WebClient(SLACK_OAUTH_KEY);
@@ -16,14 +16,12 @@ exports.handler = async (event, context) => {
         console.log('Slack auth error! Terminating lambda.');
         return;
     }
-    await firstPart.run();
-    //await secondPart.run();
 
+    // There are 2 CRON jobs set up in AWS to run this lambda at 12:05 and 12:30.
+    // If it's before 12:15 run firstPart.js else run secondPart.js
     if (new Date().getMinutes() < 15) {
-        // It's 12:05, execute firstPart.js
-        // await firstPart.run();
+        await firstPart.run();
     } else {
-        // It's 12:30, execute secondPart.js
-        // await secondPart.run();
+        await secondPart.run();
     }
 };
